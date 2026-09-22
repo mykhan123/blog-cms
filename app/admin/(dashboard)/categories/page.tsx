@@ -21,6 +21,7 @@ export default function CategoriesPage() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchCategories()
   }, [])
 
