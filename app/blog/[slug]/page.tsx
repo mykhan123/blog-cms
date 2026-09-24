@@ -30,7 +30,7 @@ export default async function BlogPostPage({
           <img
             src={post.coverImage}
             alt={post.title}
-            className="w-full h-64 object-cover"
+            className="w-full max-h-[500px] object-contain"
           />
         )}
 

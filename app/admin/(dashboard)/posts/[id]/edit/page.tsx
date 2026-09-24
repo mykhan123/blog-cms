@@ -528,20 +528,6 @@ export default function EditPostPage() {
                 Add an image URL for the
                 blog cover image.
               </p>
-
-              {coverImage && (
-                <div className="mt-4 overflow-hidden rounded-lg border border-gray-200">
-                  <img
-                    src={coverImage}
-                    alt="Cover preview"
-                    className="h-56 w-full object-cover"
-                    onError={(event) => {
-                      event.currentTarget.style.display =
-                        'none'
-                    }}
-                  />
-                </div>
-              )}
             </div>
 
             {/* Rich Text Content */}

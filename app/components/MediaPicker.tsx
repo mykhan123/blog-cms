@@ -83,11 +83,11 @@ export default function MediaPicker({
       </div>
 
       {value && (
-        <div className="overflow-hidden rounded-xl border bg-gray-50">
+        <div className="flex max-h-72 items-center justify-center overflow-hidden rounded-xl border bg-gray-100">
           <img
             src={value}
             alt="Cover preview"
-            className="max-h-72 w-full object-cover"
+            className="max-h-72 w-full object-contain"
           />
         </div>
       )}
