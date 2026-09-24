@@ -17,14 +17,24 @@ enum PostStatus {
   PUBLISHED
 }
 
+enum ActivityAction {
+  CREATED
+  UPDATED
+  PUBLISHED
+  UNPUBLISHED
+  DELETED
+}
+
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  role      Role     @default(EDITOR)
-  posts     Post[]
-  createdAt DateTime @default(now())
+  id         String     @id @default(cuid())
+  name       String
+  email      String     @unique
+  password   String
+  role       Role       @default(EDITOR)
+  posts      Post[]
+  activities Activity[]
+  media      Media[]
+  createdAt  DateTime   @default(now())
 }
 
 model Category {
@@ -35,20 +45,62 @@ model Category {
 }
 
 model Post {
-  id          String     @id @default(cuid())
+  id          String         @id @default(cuid())
   title       String
-  slug        String     @unique
+  slug        String         @unique
   content     String
   excerpt     String?
   coverImage  String?
-  status      PostStatus @default(DRAFT)
+  status      PostStatus     @default(DRAFT)
 
-  author      User       @relation(fields: [authorId], references: [id])
+  author      User           @relation(fields: [authorId], references: [id])
   authorId    String
 
-  category    Category?  @relation(fields: [categoryId], references: [id])
+  category    Category?      @relation(fields: [categoryId], references: [id])
   categoryId  String?
 
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  tags        Tag[]
+
+  activities  Activity[]
+  publishedAt DateTime?
+
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Activity {
+  id        String         @id @default(cuid())
+  action    ActivityAction
+  postTitle String
+  postId    String?
+  userId    String
+
+  user      User           @relation(fields: [userId], references: [id])
+  post      Post?          @relation(fields: [postId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime       @default(now())
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  posts     Post[]
+  createdAt DateTime @default(now())
+}
+
+model Media {
+  id           String   @id @default(cuid())
+  fileName     String
+  url          String
+  publicId     String   @unique
+  resourceType String   @default("image")
+  format       String?
+  width        Int?
+  height       Int?
+  size         Int?
+  createdAt    DateTime @default(now())
+
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id])
+  uploadedById String
 }
