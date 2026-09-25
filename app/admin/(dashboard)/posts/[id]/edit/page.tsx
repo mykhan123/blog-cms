@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import RichTextEditor from '@/app/components/RichTextEditor'
-import MediaPicker from "@/app/components/MediaPicker";
+import MediaPicker from '@/app/components/MediaPicker'
 
 type Category = {
   id: string
@@ -60,15 +60,19 @@ function formatDateTimeLocal(
   }
 
   const year = date.getFullYear()
+
   const month = String(
     date.getMonth() + 1
   ).padStart(2, '0')
+
   const day = String(
     date.getDate()
   ).padStart(2, '0')
+
   const hours = String(
     date.getHours()
   ).padStart(2, '0')
+
   const minutes = String(
     date.getMinutes()
   ).padStart(2, '0')
@@ -105,8 +109,11 @@ export default function EditPostPage() {
   const [categories, setCategories] =
     useState<Category[]>([])
 
-  const [tags, setTags] = useState<string[]>([])
-  const [tagInput, setTagInput] = useState('')
+  const [tags, setTags] =
+    useState<string[]>([])
+
+  const [tagInput, setTagInput] =
+    useState('')
 
   const [loading, setLoading] =
     useState(true)
@@ -152,12 +159,15 @@ export default function EditPostPage() {
 
         setTitle(postData.title || '')
         setSlug(postData.slug || '')
+
         setExcerpt(
           postData.excerpt || ''
         )
+
         setContent(
           postData.content || ''
         )
+
         setCoverImage(
           postData.coverImage || ''
         )
@@ -226,7 +236,11 @@ export default function EditPostPage() {
       return
     }
 
-    setTags((prev) => [...prev, newTag])
+    setTags((prev) => [
+      ...prev,
+      newTag,
+    ])
+
     setTagInput('')
   }
 
@@ -256,7 +270,9 @@ export default function EditPostPage() {
       !tagInput &&
       tags.length > 0
     ) {
-      setTags((prev) => prev.slice(0, -1))
+      setTags((prev) =>
+        prev.slice(0, -1)
+      )
     }
   }
 
@@ -312,7 +328,8 @@ export default function EditPostPage() {
         }
       )
 
-      const data = await response.json()
+      const data =
+        await response.json()
 
       if (!response.ok) {
         throw new Error(
@@ -348,9 +365,10 @@ export default function EditPostPage() {
   }
 
   const handleDelete = async () => {
-    const confirmed = window.confirm(
-      'Are you sure you want to delete this post?'
-    )
+    const confirmed =
+      window.confirm(
+        'Are you sure you want to delete this post?'
+      )
 
     if (!confirmed) {
       return
@@ -367,7 +385,8 @@ export default function EditPostPage() {
         }
       )
 
-      const data = await response.json()
+      const data =
+        await response.json()
 
       if (!response.ok) {
         throw new Error(
@@ -383,14 +402,15 @@ export default function EditPostPage() {
         error?.message ||
           'Failed to delete post'
       )
+
       setDeleting(false)
     }
   }
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-500">
+      <div className="mx-auto w-full max-w-7xl px-3 py-6 sm:px-4 sm:py-10">
+        <div className="rounded-xl border border-gray-200 bg-white p-5 text-center text-gray-500 sm:p-8">
           Loading post...
         </div>
       </div>
@@ -399,8 +419,8 @@ export default function EditPostPage() {
 
   if (!post) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-red-700">
+      <div className="mx-auto w-full max-w-7xl px-3 py-6 sm:px-4 sm:py-10">
+        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 sm:p-6">
           {error || 'Post not found'}
         </div>
       </div>
@@ -408,10 +428,11 @@ export default function EditPostPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6">
-      <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+    <div className="mx-auto w-full max-w-7xl px-3 py-4 sm:px-4 sm:py-6">
+      {/* Header */}
+      <div className="mb-5 flex flex-col justify-between gap-4 sm:mb-6 sm:flex-row sm:items-center">
+        <div className="min-w-0">
+          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
             Edit Post
           </h1>
 
@@ -424,7 +445,7 @@ export default function EditPostPage() {
           type="button"
           onClick={handleDelete}
           disabled={deleting || saving}
-          className="rounded-lg border border-red-300 px-4 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg border border-red-300 px-4 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           {deleting
             ? 'Deleting...'
@@ -432,22 +453,24 @@ export default function EditPostPage() {
         </button>
       </div>
 
+      {/* Error */}
       {error && (
-        <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 sm:mb-6">
           {error}
         </div>
       )}
 
+      {/* Success */}
       {success && (
-        <div className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+        <div className="mb-5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 sm:mb-6">
           {success}
         </div>
       )}
 
-      <form className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <form className="grid min-w-0 grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Main Content */}
-        <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="min-w-0 space-y-4 sm:space-y-6 lg:col-span-2">
+          <div className="min-w-0 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             {/* Title */}
             <div className="mb-5">
               <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -458,9 +481,11 @@ export default function EditPostPage() {
                 type="text"
                 value={title}
                 onChange={(event) =>
-                  setTitle(event.target.value)
+                  setTitle(
+                    event.target.value
+                  )
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-3 text-base outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:px-4 sm:text-lg"
               />
             </div>
 
@@ -480,10 +505,10 @@ export default function EditPostPage() {
                     )
                   )
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 font-mono text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-3 font-mono text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:px-4"
               />
 
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 break-all text-xs text-gray-500">
                 URL: /blog/{slug}
               </p>
             </div>
@@ -505,7 +530,7 @@ export default function EditPostPage() {
                   )
                 }
                 rows={3}
-                className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                className="min-w-0 w-full resize-none rounded-lg border border-gray-300 px-3 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:px-4"
               />
 
               <div className="mt-1 text-right text-xs text-gray-500">
@@ -531,7 +556,7 @@ export default function EditPostPage() {
             </div>
 
             {/* Rich Text Content */}
-            <div>
+            <div className="min-w-0">
               <label className="mb-2 block text-sm font-medium text-gray-700">
                 Content
               </label>
@@ -545,9 +570,9 @@ export default function EditPostPage() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-4 sm:space-y-6">
           {/* Publish */}
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 text-base font-semibold text-gray-900">
               Publish
             </h2>
@@ -561,7 +586,8 @@ export default function EditPostPage() {
                 value={status}
                 onChange={(event) =>
                   setStatus(
-                    event.target.value as
+                    event.target
+                      .value as
                       | 'DRAFT'
                       | 'PUBLISHED'
                   )
@@ -592,7 +618,7 @@ export default function EditPostPage() {
                     event.target.value
                   )
                 }
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
+                className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
               />
 
               <p className="mt-2 text-xs text-gray-500">
@@ -611,7 +637,7 @@ export default function EditPostPage() {
                     'DRAFT'
                   )
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {saving
                   ? 'Saving...'
@@ -627,7 +653,7 @@ export default function EditPostPage() {
                     'PUBLISHED'
                   )
                 }
-                className="w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+                className="w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {saving
                   ? 'Publishing...'
@@ -637,7 +663,7 @@ export default function EditPostPage() {
           </div>
 
           {/* Category */}
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 text-base font-semibold text-gray-900">
               Category
             </h2>
@@ -669,13 +695,13 @@ export default function EditPostPage() {
           </div>
 
           {/* Tags */}
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="mb-4 flex items-center justify-between">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-4 flex items-center justify-between gap-3">
               <h2 className="text-base font-semibold text-gray-900">
                 Tags
               </h2>
 
-              <span className="text-xs text-gray-500">
+              <span className="shrink-0 text-xs text-gray-500">
                 {tags.length}/{MAX_TAGS}
               </span>
             </div>
@@ -684,16 +710,18 @@ export default function EditPostPage() {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm text-blue-700"
+                  className="inline-flex max-w-full items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm text-blue-700"
                 >
-                  {tag}
+                  <span className="max-w-[220px] truncate">
+                    {tag}
+                  </span>
 
                   <button
                     type="button"
                     onClick={() =>
                       removeTag(tag)
                     }
-                    className="font-bold text-blue-500 hover:text-blue-700"
+                    className="shrink-0 font-bold text-blue-500 hover:text-blue-700"
                   >
                     ×
                   </button>
@@ -709,7 +737,9 @@ export default function EditPostPage() {
                   event.target.value
                 )
               }
-              onKeyDown={handleTagKeyDown}
+              onKeyDown={
+                handleTagKeyDown
+              }
               disabled={
                 tags.length >= MAX_TAGS
               }
@@ -718,7 +748,7 @@ export default function EditPostPage() {
                   ? 'Maximum tags added'
                   : 'Type tag and press Enter'
               }
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500 disabled:bg-gray-100"
+              className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500 disabled:bg-gray-100"
             />
 
             <p className="mt-2 text-xs text-gray-500">

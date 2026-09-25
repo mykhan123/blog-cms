@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { useRouter } from 'next/navigation'
 import RichTextEditor from '@/app/components/RichTextEditor'
-import MediaPicker from "@/app/components/MediaPicker";
+import MediaPicker from '@/app/components/MediaPicker'
 
 type Category = {
   id: string
@@ -226,9 +226,9 @@ export default function NewPostPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
+    <div className="mx-auto w-full max-w-7xl px-3 py-4 sm:px-4 sm:py-6">
+      <div className="mb-5 sm:mb-6">
+        <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
           Create New Post
         </h1>
 
@@ -239,15 +239,15 @@ export default function NewPostPage() {
       </div>
 
       {error && (
-        <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 sm:mb-6">
           {error}
         </div>
       )}
 
-      <form className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <form className="grid min-w-0 grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Main Content */}
-        <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="min-w-0 space-y-4 sm:space-y-6 lg:col-span-2">
+          <div className="min-w-0 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             {/* Title */}
             <div className="mb-5">
               <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -261,7 +261,7 @@ export default function NewPostPage() {
                   setTitle(event.target.value)
                 }
                 placeholder="Enter post title"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-lg outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:px-4 sm:text-lg"
               />
             </div>
 
@@ -276,15 +276,18 @@ export default function NewPostPage() {
                 value={slug}
                 onChange={(event) => {
                   setSlugTouched(true)
+
                   setSlug(
-                    slugify(event.target.value)
+                    slugify(
+                      event.target.value
+                    )
                   )
                 }}
                 placeholder="post-url-slug"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 font-mono text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-3 font-mono text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:px-4"
               />
 
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 break-all text-xs text-gray-500">
                 URL: /blog/
                 {slug || 'your-post-slug'}
               </p>
@@ -308,7 +311,7 @@ export default function NewPostPage() {
                 }
                 rows={3}
                 placeholder="Short description of your post..."
-                className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                className="min-w-0 w-full resize-none rounded-lg border border-gray-300 px-3 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:px-4"
               />
 
               <div className="mt-1 text-right text-xs text-gray-500">
@@ -334,7 +337,7 @@ export default function NewPostPage() {
             </div>
 
             {/* Rich Text Content */}
-            <div>
+            <div className="min-w-0">
               <label className="mb-2 block text-sm font-medium text-gray-700">
                 Content
               </label>
@@ -348,9 +351,9 @@ export default function NewPostPage() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-4 sm:space-y-6">
           {/* Publish */}
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 text-base font-semibold text-gray-900">
               Publish
             </h2>
@@ -395,7 +398,7 @@ export default function NewPostPage() {
                     event.target.value
                   )
                 }
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
+                className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
               />
 
               <p className="mt-2 text-xs text-gray-500">
@@ -440,7 +443,7 @@ export default function NewPostPage() {
           </div>
 
           {/* Category */}
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 text-base font-semibold text-gray-900">
               Category
             </h2>
@@ -473,13 +476,13 @@ export default function NewPostPage() {
           </div>
 
           {/* Tags */}
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="mb-4 flex items-center justify-between">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-4 flex items-center justify-between gap-3">
               <h2 className="text-base font-semibold text-gray-900">
                 Tags
               </h2>
 
-              <span className="text-xs text-gray-500">
+              <span className="shrink-0 text-xs text-gray-500">
                 {tags.length}/{MAX_TAGS}
               </span>
             </div>
@@ -488,16 +491,18 @@ export default function NewPostPage() {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm text-blue-700"
+                  className="inline-flex max-w-full items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm text-blue-700"
                 >
-                  {tag}
+                  <span className="max-w-[220px] truncate">
+                    {tag}
+                  </span>
 
                   <button
                     type="button"
                     onClick={() =>
                       removeTag(tag)
                     }
-                    className="font-bold text-blue-500 hover:text-blue-700"
+                    className="shrink-0 font-bold text-blue-500 hover:text-blue-700"
                   >
                     ×
                   </button>
@@ -522,7 +527,7 @@ export default function NewPostPage() {
                   ? 'Maximum tags added'
                   : 'Type tag and press Enter'
               }
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500 disabled:bg-gray-100"
+              className="min-w-0 w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500 disabled:bg-gray-100"
             />
 
             <p className="mt-2 text-xs text-gray-500">

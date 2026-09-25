@@ -57,7 +57,7 @@ export default function RichTextEditor({
     editorProps: {
       attributes: {
         class:
-          'tiptap min-h-[420px] w-full px-4 py-3 focus:outline-none',
+          'tiptap min-h-[300px] w-full px-3 py-3 text-sm focus:outline-none sm:min-h-[420px] sm:px-4',
       },
     },
 
@@ -89,7 +89,7 @@ export default function RichTextEditor({
 
   if (!mounted || !editor) {
     return (
-      <div className="min-h-[470px] animate-pulse rounded-lg border border-gray-300 bg-gray-50" />
+      <div className="min-h-[350px] animate-pulse rounded-lg border border-gray-300 bg-gray-50 sm:min-h-[470px]" />
     )
   }
 
@@ -126,9 +126,9 @@ export default function RichTextEditor({
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-gray-300 bg-white">
+    <div className="min-w-0 overflow-hidden rounded-lg border border-gray-300 bg-white">
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-1 border-b border-gray-200 bg-gray-50 p-2">
+      <div className="flex max-w-full flex-wrap items-center gap-1 overflow-x-auto border-b border-gray-200 bg-gray-50 p-2">
         {/* Undo */}
         <button
           type="button"
@@ -141,9 +141,14 @@ export default function RichTextEditor({
               .run()
           }
           disabled={
-            !editor.can().chain().focus().undo().run()
+            !editor
+              .can()
+              .chain()
+              .focus()
+              .undo()
+              .run()
           }
-          className="rounded px-2.5 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40"
+          className="shrink-0 rounded px-2 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40"
         >
           ↶
         </button>
@@ -160,14 +165,19 @@ export default function RichTextEditor({
               .run()
           }
           disabled={
-            !editor.can().chain().focus().redo().run()
+            !editor
+              .can()
+              .chain()
+              .focus()
+              .redo()
+              .run()
           }
-          className="rounded px-2.5 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40"
+          className="shrink-0 rounded px-2 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40"
         >
           ↷
         </button>
 
-        <div className="mx-1 h-6 w-px bg-gray-300" />
+        <div className="mx-1 h-6 w-px shrink-0 bg-gray-300" />
 
         {/* Heading 1 */}
         <button
@@ -182,7 +192,7 @@ export default function RichTextEditor({
               })
               .run()
           }
-          className={`rounded px-2.5 py-1.5 text-sm font-bold hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-2 py-1.5 text-sm font-bold hover:bg-gray-200 ${
             editor.isActive('heading', {
               level: 1,
             })
@@ -206,7 +216,7 @@ export default function RichTextEditor({
               })
               .run()
           }
-          className={`rounded px-2.5 py-1.5 text-sm font-bold hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-2 py-1.5 text-sm font-bold hover:bg-gray-200 ${
             editor.isActive('heading', {
               level: 2,
             })
@@ -230,7 +240,7 @@ export default function RichTextEditor({
               })
               .run()
           }
-          className={`rounded px-2.5 py-1.5 text-sm font-bold hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-2 py-1.5 text-sm font-bold hover:bg-gray-200 ${
             editor.isActive('heading', {
               level: 3,
             })
@@ -241,7 +251,7 @@ export default function RichTextEditor({
           H3
         </button>
 
-        <div className="mx-1 h-6 w-px bg-gray-300" />
+        <div className="mx-1 h-6 w-px shrink-0 bg-gray-300" />
 
         {/* Bold */}
         <button
@@ -254,7 +264,7 @@ export default function RichTextEditor({
               .toggleBold()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm font-bold hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm font-bold hover:bg-gray-200 ${
             editor.isActive('bold')
               ? 'bg-gray-300'
               : ''
@@ -274,7 +284,7 @@ export default function RichTextEditor({
               .toggleItalic()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm italic hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm italic hover:bg-gray-200 ${
             editor.isActive('italic')
               ? 'bg-gray-300'
               : ''
@@ -294,7 +304,7 @@ export default function RichTextEditor({
               .toggleUnderline()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm underline hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm underline hover:bg-gray-200 ${
             editor.isActive('underline')
               ? 'bg-gray-300'
               : ''
@@ -314,7 +324,7 @@ export default function RichTextEditor({
               .toggleStrike()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm line-through hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm line-through hover:bg-gray-200 ${
             editor.isActive('strike')
               ? 'bg-gray-300'
               : ''
@@ -323,7 +333,7 @@ export default function RichTextEditor({
           S
         </button>
 
-        <div className="mx-1 h-6 w-px bg-gray-300" />
+        <div className="mx-1 h-6 w-px shrink-0 bg-gray-300" />
 
         {/* Bullet List */}
         <button
@@ -336,7 +346,7 @@ export default function RichTextEditor({
               .toggleBulletList()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive('bulletList')
               ? 'bg-gray-300'
               : ''
@@ -356,7 +366,7 @@ export default function RichTextEditor({
               .toggleOrderedList()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive('orderedList')
               ? 'bg-gray-300'
               : ''
@@ -376,7 +386,7 @@ export default function RichTextEditor({
               .toggleBlockquote()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive('blockquote')
               ? 'bg-gray-300'
               : ''
@@ -396,7 +406,7 @@ export default function RichTextEditor({
               .toggleCodeBlock()
               .run()
           }
-          className={`rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive('codeBlock')
               ? 'bg-gray-300'
               : ''
@@ -405,14 +415,14 @@ export default function RichTextEditor({
           Code
         </button>
 
-        <div className="mx-1 h-6 w-px bg-gray-300" />
+        <div className="mx-1 h-6 w-px shrink-0 bg-gray-300" />
 
         {/* Link */}
         <button
           type="button"
           title="Add Link"
           onClick={setLink}
-          className={`rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-3 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive('link')
               ? 'bg-gray-300'
               : ''
@@ -432,7 +442,7 @@ export default function RichTextEditor({
               .setTextAlign('left')
               .run()
           }
-          className={`rounded px-2.5 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-2.5 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive({
               textAlign: 'left',
             })
@@ -454,7 +464,7 @@ export default function RichTextEditor({
               .setTextAlign('center')
               .run()
           }
-          className={`rounded px-2.5 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-2.5 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive({
               textAlign: 'center',
             })
@@ -476,7 +486,7 @@ export default function RichTextEditor({
               .setTextAlign('right')
               .run()
           }
-          className={`rounded px-2.5 py-1.5 text-sm hover:bg-gray-200 ${
+          className={`shrink-0 rounded px-2.5 py-1.5 text-sm hover:bg-gray-200 ${
             editor.isActive({
               textAlign: 'right',
             })
@@ -487,7 +497,7 @@ export default function RichTextEditor({
           R
         </button>
 
-        <div className="mx-1 h-6 w-px bg-gray-300" />
+        <div className="mx-1 h-6 w-px shrink-0 bg-gray-300" />
 
         {/* Clear Formatting */}
         <button
@@ -501,14 +511,16 @@ export default function RichTextEditor({
               .unsetAllMarks()
               .run()
           }
-          className="rounded px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-200"
+          className="shrink-0 rounded px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-200"
         >
           Clear
         </button>
       </div>
 
       {/* Editor */}
-      <EditorContent editor={editor} />
+      <div className="min-w-0 overflow-x-auto">
+        <EditorContent editor={editor} />
+      </div>
     </div>
   )
 }

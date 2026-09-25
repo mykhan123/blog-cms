@@ -22,25 +22,50 @@ export default function MobileNav({
       label: 'Dashboard',
       icon: (
         <svg
-          className="h-5 w-5"
+          className="h-5 w-5 shrink-0"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.8"
         >
-          <rect x="3" y="3" width="7" height="7" rx="1" />
-          <rect x="14" y="3" width="7" height="7" rx="1" />
-          <rect x="3" y="14" width="7" height="7" rx="1" />
-          <rect x="14" y="14" width="7" height="7" rx="1" />
+          <rect
+            x="3"
+            y="3"
+            width="7"
+            height="7"
+            rx="1"
+          />
+          <rect
+            x="14"
+            y="3"
+            width="7"
+            height="7"
+            rx="1"
+          />
+          <rect
+            x="3"
+            y="14"
+            width="7"
+            height="7"
+            rx="1"
+          />
+          <rect
+            x="14"
+            y="14"
+            width="7"
+            height="7"
+            rx="1"
+          />
         </svg>
       ),
     },
+
     {
       href: '/admin/posts',
       label: 'Posts',
       icon: (
         <svg
-          className="h-5 w-5"
+          className="h-5 w-5 shrink-0"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -51,10 +76,12 @@ export default function MobileNav({
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+
           <path
             d="M4 17h13.5A2.5 2.5 0 0 1 20 19.5"
             strokeLinecap="round"
           />
+
           <path
             d="M8 6h8M8 10h8"
             strokeLinecap="round"
@@ -62,12 +89,13 @@ export default function MobileNav({
         </svg>
       ),
     },
+
     {
       href: '/admin/categories',
       label: 'Categories',
       icon: (
         <svg
-          className="h-5 w-5"
+          className="h-5 w-5 shrink-0"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -96,10 +124,14 @@ export default function MobileNav({
   return (
     <>
       {/* Mobile Header */}
-      <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 md:hidden">
-        <Link href="/admin" onClick={closeMenu}>
+      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-gray-800 bg-gray-950 px-4 shadow-sm md:hidden">
+        <Link
+          href="/admin"
+          onClick={closeMenu}
+          className="min-w-0"
+        >
           <div>
-            <h1 className="text-base font-bold text-gray-900">
+            <h1 className="text-base font-bold text-white">
               Blog CMS
             </h1>
 
@@ -113,7 +145,7 @@ export default function MobileNav({
           type="button"
           onClick={() => setIsOpen(true)}
           aria-label="Open navigation menu"
-          className="rounded-lg p-2 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          className="shrink-0 rounded-lg p-2 text-gray-300 transition hover:bg-gray-800 hover:text-white"
         >
           <svg
             className="h-6 w-6"
@@ -142,15 +174,15 @@ export default function MobileNav({
 
       {/* Mobile Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col bg-gray-950 text-gray-300 shadow-2xl transition-transform duration-300 md:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-72 max-w-[85vw] flex-col bg-gray-950 text-gray-300 shadow-2xl transition-transform duration-300 md:hidden ${
           isOpen
             ? 'translate-x-0'
             : '-translate-x-full'
         }`}
       >
         {/* Sidebar Header */}
-        <div className="flex h-16 items-center justify-between border-b border-gray-800 px-5">
-          <div>
+        <div className="flex h-16 shrink-0 items-center justify-between border-b border-gray-800 px-5">
+          <div className="min-w-0">
             <h1 className="text-lg font-bold text-white">
               Blog CMS
             </h1>
@@ -164,7 +196,7 @@ export default function MobileNav({
             type="button"
             onClick={closeMenu}
             aria-label="Close navigation menu"
-            className="rounded-lg p-2 text-gray-400 transition hover:bg-gray-900 hover:text-white"
+            className="shrink-0 rounded-lg p-2 text-gray-400 transition hover:bg-gray-900 hover:text-white"
           >
             <svg
               className="h-5 w-5"
@@ -182,7 +214,7 @@ export default function MobileNav({
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-1 px-3 py-6">
+        <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-6">
           {links.map((link) => {
             const active = isActive(link.href)
 
@@ -191,7 +223,7 @@ export default function MobileNav({
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition ${
+                className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition ${
                   active
                     ? 'bg-indigo-600 text-white shadow-sm'
                     : 'text-gray-400 hover:bg-gray-900 hover:text-white'
@@ -206,7 +238,7 @@ export default function MobileNav({
         </nav>
 
         {/* User */}
-        <div className="border-t border-gray-800 p-4">
+        <div className="shrink-0 border-t border-gray-800 p-4">
           <div className="rounded-xl bg-gray-900 px-3 py-3">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white">
