@@ -16,7 +16,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen w-full bg-gray-50">
+    <div className="admin-theme min-h-screen w-full bg-gray-50">
       {/* Mobile Navigation
           Kept OUTSIDE the desktop flex layout.
           This makes the mobile header use the full viewport width.

@@ -14,16 +14,233 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f8fafc;
   }
 }
 
+html,
 body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================================================
+   ADMIN DARK THEME
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .admin-theme {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+  }
+
+  /* Main backgrounds */
+  .admin-theme .bg-gray-50 {
+    background-color: #0f172a !important;
+  }
+
+  .admin-theme .bg-gray-100 {
+    background-color: #111827 !important;
+  }
+
+  .admin-theme .bg-white {
+    background-color: #111827 !important;
+  }
+
+  /* Cards */
+  .admin-theme .shadow-sm,
+  .admin-theme .shadow,
+  .admin-theme .shadow-md {
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.35),
+      0 1px 2px -1px rgb(0 0 0 / 0.35) !important;
+  }
+
+  /* Borders */
+  .admin-theme .border-gray-200 {
+    border-color: #374151 !important;
+  }
+
+  .admin-theme .border-gray-300 {
+    border-color: #4b5563 !important;
+  }
+
+  /* Main text */
+  .admin-theme .text-gray-900 {
+    color: #f9fafb !important;
+  }
+
+  .admin-theme .text-gray-800 {
+    color: #f3f4f6 !important;
+  }
+
+  .admin-theme .text-gray-700 {
+    color: #e5e7eb !important;
+  }
+
+  .admin-theme .text-gray-600 {
+    color: #d1d5db !important;
+  }
+
+  .admin-theme .text-gray-500 {
+    color: #9ca3af !important;
+  }
+
+  .admin-theme .text-gray-400 {
+    color: #9ca3af !important;
+  }
+
+  /* Inputs */
+  .admin-theme input,
+  .admin-theme textarea,
+  .admin-theme select {
+    background-color: #111827 !important;
+    color: #f9fafb !important;
+    border-color: #4b5563 !important;
+  }
+
+  .admin-theme input::placeholder,
+  .admin-theme textarea::placeholder {
+    color: #6b7280 !important;
+  }
+
+  .admin-theme input:focus,
+  .admin-theme textarea:focus,
+  .admin-theme select:focus {
+    border-color: #6366f1 !important;
+    outline: none;
+    box-shadow: 0 0 0 1px #6366f1 !important;
+  }
+
+  /* Disabled controls */
+  .admin-theme input:disabled,
+  .admin-theme textarea:disabled,
+  .admin-theme select:disabled {
+    background-color: #1f2937 !important;
+    color: #6b7280 !important;
+  }
+
+  /* Tables / list rows */
+  .admin-theme tr,
+  .admin-theme .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
+    border-color: #374151 !important;
+  }
+
+  .admin-theme .hover\:bg-gray-50:hover {
+    background-color: #1f2937 !important;
+  }
+
+  .admin-theme .hover\:bg-gray-100:hover {
+    background-color: #1f2937 !important;
+  }
+
+  /* Small light backgrounds */
+  .admin-theme .bg-gray-50\/50 {
+    background-color: rgb(17 24 39 / 0.5) !important;
+  }
+
+  /* Mobile header */
+  .admin-theme header.bg-white {
+    background-color: #020617 !important;
+    border-color: #1f2937 !important;
+  }
+
+  /* Modal / overlay content */
+  .admin-theme .bg-white.rounded-xl,
+  .admin-theme .bg-white.rounded-lg {
+    background-color: #111827 !important;
+  }
+
+  /* Keep active navigation visible */
+  .admin-theme .bg-indigo-600 {
+    background-color: #4f46e5 !important;
+  }
+
+  .admin-theme .hover\:bg-indigo-700:hover {
+    background-color: #4338ca !important;
+  }
+
+  /* Buttons that use gray backgrounds */
+  .admin-theme .bg-gray-200 {
+    background-color: #374151 !important;
+    color: #f3f4f6 !important;
+  }
+
+  .admin-theme .hover\:bg-gray-200:hover {
+    background-color: #4b5563 !important;
+  }
+
+  /* =======================================================
+     TIPTAP DARK THEME
+     ======================================================= */
+
+  .admin-theme .tiptap {
+    background-color: #111827 !important;
+    color: #f3f4f6 !important;
+  }
+
+  .admin-theme .tiptap p,
+  .admin-theme .tiptap h1,
+  .admin-theme .tiptap h2,
+  .admin-theme .tiptap h3,
+  .admin-theme .tiptap li {
+    color: #f3f4f6 !important;
+  }
+
+  .admin-theme .tiptap blockquote {
+    border-left-color: #4b5563 !important;
+    color: #9ca3af !important;
+  }
+
+  .admin-theme .tiptap code {
+    background: #1f2937 !important;
+    color: #f3f4f6 !important;
+  }
+
+  .admin-theme .tiptap pre {
+    background: #020617 !important;
+    color: #f9fafb !important;
+  }
+
+  .admin-theme .tiptap a {
+    color: #60a5fa !important;
+  }
+
+  .admin-theme .tiptap hr {
+    border-top-color: #374151 !important;
+  }
+
+  .admin-theme .tiptap p.is-editor-empty:first-child::before {
+    color: #6b7280 !important;
+  }
+
+  /* Tiptap toolbar */
+  .admin-theme .tiptap-toolbar {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+
+  .admin-theme .tiptap-toolbar button {
+    color: #d1d5db !important;
+  }
+
+  .admin-theme .tiptap-toolbar button:hover {
+    background-color: #374151 !important;
+    color: #ffffff !important;
+  }
+}
+
+/* =========================================================
+   TIPTAP BASE STYLES
+   ========================================================= */
 
 .tiptap {
   min-height: 420px;
